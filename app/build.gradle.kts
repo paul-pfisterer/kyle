@@ -47,7 +47,9 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.scanner)
+    implementation (libs.accompanist.permissions)
+    implementation(libs.client)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
