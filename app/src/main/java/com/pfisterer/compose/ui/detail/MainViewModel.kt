@@ -35,6 +35,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             .launchIn(viewModelScope)
     }
 
+    fun cancelScan() {
+        scanJob?.cancel()
+        _state.value = _state.value.copy(scanning = false)
+    }
+
     fun connect(device: ServerDevice) {
         //Connect to the device and do stuff
         scanJob?.cancel()
