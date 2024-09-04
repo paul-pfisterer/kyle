@@ -44,9 +44,11 @@ class MainActivity : ComponentActivity() {
                         Column(
                             verticalArrangement = Arrangement.Center,
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.fillMaxSize(),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(it),
                         ) {
-                            Text("Garant permissions to continue", modifier = Modifier.padding(it))
+                            Text("Garant permissions to continue")
                             Button(onClick = { multiplePermissionsState.launchMultiplePermissionRequest() }) {
                                 Text("Request permissions")
                             }
