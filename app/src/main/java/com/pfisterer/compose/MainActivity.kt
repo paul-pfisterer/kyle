@@ -18,7 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
-import com.pfisterer.compose.ui.detail.MainScreen
+import com.pfisterer.compose.ui.main.MainScreen
 import com.pfisterer.compose.ui.theme.ComposeTheme
 
 class MainActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package com.pfisterer.compose.ui.detail
+package com.pfisterer.compose.ui.main
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

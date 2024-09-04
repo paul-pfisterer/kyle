@@ -1,4 +1,4 @@
-package com.pfisterer.compose.ui.detail
+package com.pfisterer.compose.ui.main
 
 import android.annotation.SuppressLint
 import android.app.Application
