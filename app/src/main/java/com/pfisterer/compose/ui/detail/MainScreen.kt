@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,7 +27,12 @@ fun MainScreen(
             if (state.value.connected) {
                 DeviceScreen()
             } else {
-                ConnectScreen(scan = { mainViewModel.scan() }, devices = state.value.devices, connect = { mainViewModel.connect(it) })
+                ConnectScreen(
+                    scan = { mainViewModel.scan() },
+                    devices = state.value.devices,
+                    connect = { mainViewModel.connect(it) },
+                    scanning = state.value.scanning
+                )
             }
         }
     }
@@ -35,6 +41,7 @@ fun MainScreen(
 @Composable
 fun ConnectScreen(
     scan: () -> Unit,
+    scanning: Boolean,
     devices: List<ServerDevice>,
     connect: (ServerDevice) -> Unit,
 ) {
@@ -43,10 +50,14 @@ fun ConnectScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Button(onClick = scan) {
-            Text(text = "Scan")
-        }
         Text(text = "Connect to device")
+        if (!scanning) {
+            Button(onClick = scan) {
+                Text(text = "Scan")
+            }
+        } else {
+            CircularProgressIndicator()
+        }
         devices.forEach { device ->
             device.name?.let { deviceName ->
                 Button(onClick = { connect(device) }) {
