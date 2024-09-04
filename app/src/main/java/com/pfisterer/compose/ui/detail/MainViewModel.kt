@@ -14,10 +14,14 @@ import no.nordicsemi.android.kotlin.ble.core.ServerDevice
 import no.nordicsemi.android.kotlin.ble.scanner.BleScanner
 import no.nordicsemi.android.kotlin.ble.scanner.aggregator.BleScanResultAggregator
 
-data class DetailState(val connected: Boolean = false, val devices: List<ServerDevice> = emptyList(), val scanning: Boolean = false)
+data class MainState(
+    val connected: Boolean = false,
+    val devices: List<ServerDevice> = emptyList(),
+    val scanning: Boolean = false,
+)
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
-    private var _state = MutableStateFlow(DetailState())
+    private var _state = MutableStateFlow(MainState())
     val state = _state.asStateFlow()
     private var scanJob: Job? = null
 
