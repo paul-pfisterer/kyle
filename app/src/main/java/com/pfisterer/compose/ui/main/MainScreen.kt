@@ -32,9 +32,9 @@ fun MainScreen(
     Scaffold { padding ->
         Box(modifier = Modifier.padding(padding)) {
             if (state.value.connected) {
-                DeviceScreen()
+                DeviceView()
             } else {
-                ConnectScreen(
+                ScanView(
                     toggleScan = { mainViewModel.toggleScan() },
                     devices = state.value.devices,
                     connect = { mainViewModel.connect(it) },
@@ -46,7 +46,7 @@ fun MainScreen(
 }
 
 @Composable
-fun ConnectScreen(
+fun ScanView(
     toggleScan: () -> Unit,
     scanning: Boolean,
     devices: List<ServerDevice>,
@@ -93,6 +93,6 @@ fun ConnectScreen(
 }
 
 @Composable
-fun DeviceScreen(
+fun DeviceView(
 ) {
 }
