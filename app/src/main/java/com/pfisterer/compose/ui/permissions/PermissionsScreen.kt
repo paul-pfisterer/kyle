@@ -25,7 +25,7 @@ fun PermissionsScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
-                .padding(16.dp),
+                .padding(24.dp),
         ) {
             AppText(
                 "You need to garant permissions to scan and connect with Bluetooth to use this app",
