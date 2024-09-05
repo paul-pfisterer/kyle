@@ -26,22 +26,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private var scanJob: Job? = null
 
     @SuppressLint("MissingPermission") //Permission check is done in MainActivity
-    fun scan() {
-        _state.value = _state.value.copy(scanning = true)
-        val aggregator = BleScanResultAggregator()
-        scanJob = BleScanner(getApplication()).scan()
-            .map {
-                aggregator.aggregateDevices(it)
-            }
-            .onEach {
-                _state.value = _state.value.copy(devices = it)
-            }
-            .launchIn(viewModelScope)
-    }
-
-    fun cancelScan() {
-        scanJob?.cancel()
-        _state.value = _state.value.copy(scanning = false)
+    fun toggleScan() {
+        if (_state.value.scanning) {
+            scanJob?.cancel()
+            _state.value = _state.value.copy(scanning = false)
+        } else {
+            _state.value = _state.value.copy(scanning = true)
+            val aggregator = BleScanResultAggregator()
+            scanJob = BleScanner(getApplication()).scan()
+                .map {
+                    aggregator.aggregateDevices(it)
+                }
+                .onEach {
+                    _state.value = _state.value.copy(devices = it)
+                }
+                .launchIn(viewModelScope)
+        }
     }
 
     fun connect(device: ServerDevice) {
